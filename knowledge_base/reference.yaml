@@ -1,0 +1,68 @@
+# ═══════════════════════════════════════════
+# reference.yaml
+# 肠杆菌目抗菌药物知识库
+# ═══════════════════════════════════════════
+
+organisms_covered:  # 覆盖菌种
+- 大肠埃希菌 (Escherichia coli)
+- 肺炎克雷伯菌 (Klebsiella pneumoniae)
+- 产酸克雷伯菌 (Klebsiella oxytoca)
+- 奇异变形杆菌 (Proteus mirabilis)
+- 阴沟肠杆菌复合群 (Enterobacter cloacae complex)
+- 弗氏柠檬酸杆菌复合群 (Citrobacter freundii complex)
+- 产气肠杆菌 (Klebsiella aerogenes)
+- 粘质沙雷菌 (Serratia marcescens)
+- 摩根摩根菌 (Morganella morganii)
+- 蜂房哈夫尼亚菌 (Hafnia alvei)
+- 普罗威登菌属 (Providencia spp.)
+- 小肠结肠炎耶尔森菌 (Yersinia enterocolitica)
+clinical_footnotes:  # CLSI临床脚注
+  note_63: 对四环素敏感的菌株也被认为对多西环素和米诺环素敏感；四环素中介或耐药的菌株可能对多西环素或米诺环素二者敏感
+  note_64: 环丙沙星折点基于IV 400mg q12h或口服500mg q12h给药方案
+  note_65: 左氧氟沙星折点基于750mg qd给药方案
+  note_66: 吉米沙星仅用于肺炎克雷伯菌报告
+  note_67: 沙门菌/志贺菌属应检测氨苄西林、氟喹诺酮类和TMP-SMX；沙门菌血流感染不常规检测氨基糖苷类或头孢菌素类
+  note_68: 环丙沙星MIC可作为所有氟喹诺酮类耐药的预测指标
+  note_70: 仅环丙沙星/左氧氟沙星/氧氟沙星有沙门菌折点；氟喹诺酮耐药沙门菌感染有临床失败风险
+  note_71: 培氟沙星纸片作为沙门菌环丙沙星替代指标；美国无商业化产品；aac(6')-Ib-cr机制
+  note_72: 磺胺类折点代表任一磺胺药物
+  note_73: 氯霉素不常规报告泌尿道分离株
+  note_74: 磷霉素折点仅用于泌尿道分离的大肠埃希菌
+  note_75: 200μg磷霉素纸片含50μg葡萄糖-6-磷酸
+  note_76: 唯一认可MIC法为琼脂稀释法(添加25μg/mL葡萄糖-6-磷酸)，不采用肉汤稀释法
+  footnote_a: ATCC®是美国典型菌种保藏中心注册商标
+  footnote_b: 仅报告泌尿道分离株
+  footnote_b_ampc: AmpC去阻遏高风险菌种完整列表见ampc_risk_stratification节
+  footnote_c: 头孢吡肟应被视为AmpC高风险菌种的优选检测和/或报告药物
+  footnote_d: 对四环素敏感的微生物也被认为对多西环素和米诺环素敏感
+  footnote_e: 头孢唑林可作为口服头孢菌素替代试验及非复杂性UTI治疗
+  footnote_f: 磷霉素仅报告从泌尿道分离出的大肠埃希菌
+  symbol_caret: ^指示有可能在尿液中浓集的药物
+  symbol_asterisk: '*指表1中未包含但已建立临床折点的其他药物'
+abbreviations:  # 缩写对照表
+  AST: 抗菌药物敏感性试验
+  CAMHB: 阳离子调节Mueller-Hinton肉汤
+  CAT: 黏菌素琼脂稀释试验
+  CBDE: 黏菌素肉汤纸片洗脱
+  eCIM: EDTA改良碳青霉烯灭活试验
+  ESBL: 超广谱β-内酰胺酶  # 产ESBL(超广谱β-内酰胺酶)
+  Inv.: 研究型药物
+  IV: 静脉给药
+  MHA: Mueller-Hinton琼脂
+  MIC: 最低抑菌浓度
+  mCIM: 改良碳青霉烯灭活试验
+  PK-PD: 药代动力学-药效学
+  QC: 质量控制
+  SDD: 剂量依赖性敏感  # 剂量依赖性敏感
+  U: 尿（仅泌尿道）
+  UTI: 泌尿道感染
+references:  # 参考文献
+- 1. Hackel MA, et al. Reproducibility of broth microdilution MICs for cefiderocol. Diagn Microbiol Infect Dis. 2019;94(4):321-325.
+- 2. CLSI. Performance Standards for Antimicrobial Disk Susceptibility Tests. 13th ed. M02. 2018.
+- 3. CLSI. M02 Disk Diffusion Reading Guide. 1st ed. M02QG. 2018.
+- '4. Tamma PD, et al. IDSA Guidance on AMR gram-negative infections: version 2.0. 2022.'
+- 5. Perrott J, et al. Comparing outcomes of meropenem administration strategies. Ann Pharmacother. 2010;44(3):557-564.
+- 6. Cirillo I, et al. Pharmacokinetics of doripenem. J Clin Pharmacol. 2009;49(7):798-806.
+- 7. Sakka SG, et al. Imipenem PK continuous vs short-term infusion. Antimicrob Agents Chemother. 2007;51(9):3304-3310.
+- 8. Peleg AY, Hooper DC. Hospital-acquired infections due to gram-negative bacteria. N Engl J Med. 2010;362(19):1804-1813.
+- 9. Tsuji BT, et al. International consensus guidelines for polymyxins. Pharmacotherapy. 2019;39(1):10-39.

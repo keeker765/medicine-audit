@@ -1,0 +1,32 @@
+# ═══════════════════════════════════════════
+# index.yaml
+# 肠杆菌目抗菌药物知识库
+# ═══════════════════════════════════════════
+
+meta:  # 元信息
+  title: 肠杆菌目抗菌药物完整知识库
+  version: '1.0'
+  sources:
+  - CLSI M100 第33版（表1A / 表2A）
+  - 国家卫健委抗菌药物分级管理办法
+  - IDSA AMR Guidance 2.0 (2022)
+  - 中国CRE诊治专家共识
+  description: 合并药物信息、分级管理、级联报告规则、MIC折点、治疗指南为统一知识库  # 说明
+schema_version: '1.0'  # 架构版本
+description: 主索引文件 — 通过 $ref 引用各领域子文件。加载时递归解析 $ref 即可获取完整知识库。  # 说明
+modules:  # 模块索引
+  drugs:  # 药物列表
+    description: 药物详细信息 + 国家分级管理目录  # 说明
+    $ref: ./drugs.yaml  # 引用文件路径
+  reporting:
+    description: CLSI 4级级联报告 + MIC折点 + 剂量关联折点 + 泌尿道专用  # 说明
+    $ref: ./reporting.yaml  # 引用文件路径
+  treatment:
+    description: 按菌种/耐药分型的治疗方案 + 经验性治疗  # 说明
+    $ref: ./treatment.yaml  # 引用文件路径
+  resistance:
+    description: ESBL / CRE / AmpC / 天然耐药规则 + 沙门菌特殊规则  # 说明
+    $ref: ./resistance.yaml  # 引用文件路径
+  reference:
+    description: 菌种列表 + CLSI脚注 + 缩写表 + 参考文献  # 说明
+    $ref: ./reference.yaml  # 引用文件路径

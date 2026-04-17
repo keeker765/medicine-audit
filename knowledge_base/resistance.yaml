@@ -1,0 +1,131 @@
+# ═══════════════════════════════════════════
+# resistance.yaml
+# 肠杆菌目抗菌药物知识库
+# ═══════════════════════════════════════════
+
+resistance_rules:  # 耐药规则
+  ESBL:  # 产ESBL(超广谱β-内酰胺酶)
+    description: 产超广谱β-内酰胺酶（ESBL）阳性菌株  # 说明
+    rule: 即使体外药敏显示敏感，青霉素类、头孢菌素类（一至四代）和氨曲南的临床疗效不确定，不推荐单独使用。推荐碳青霉烯类作为首选治疗。  # 规则
+    recommended:  # 推荐方案
+    - 碳青霉烯类（厄他培南、亚胺培南、美罗培南）
+    alternative:  # 替代方案
+    - 哌拉西林/他唑巴坦（轻中度感染）
+    - 头孢哌酮/舒巴坦
+    - 阿米卡星（联合用药）
+    avoid:  # 应避免
+    - 头孢曲松
+    - 头孢他啶
+    - 头孢吡肟（单药）
+    - 氨曲南
+    testing_policy:  # 检测政策
+      description: ESBL检测政策（M100第33版更新）  # 说明
+      rule: 使用2010年修订折点后，报告结果前不再需要常规测试ESBL  # 规则
+      optional: 实验室可决定对ESBL进行表型或基因型检测，结果可用于指导治疗管理或流行病学/感染预防目的  # 可选
+      exception: 对于难以获得的药物（拉氧头孢、头孢尼西、头孢孟多、头孢哌酮），如用于治疗大肠埃希菌、肺炎克雷伯菌、产酸克雷伯菌或变形杆菌属感染，仍应执行ESBL试验  # 例外
+  CRE:  # 碳青霉烯耐药肠杆菌
+    description: 碳青霉烯耐药肠杆菌目（CRE/CRKP）  # 说明
+    rule: 碳青霉烯类MIC≥8时为耐药。需进一步鉴定碳青霉烯酶类型（KPC/NDM/OXA等）指导治疗。  # 规则
+    KPC_type:  # KPC型碳青霉烯酶
+      description: 产KPC型丝氨酸碳青霉烯酶  # 说明
+      first_line:  # 一线治疗
+      - 头孢他啶/阿维巴坦
+      alternative:  # 替代方案
+      - 亚胺培南/瑞来巴坦
+      - 美罗培南/法硼巴坦
+      combination_options:  # 联合用药选项
+      - 联合氨曲南
+      - 联合磷霉素
+      - 联合替加环素
+      last_resort:  # 最后手段
+      - 多黏菌素B/E（联合用药）
+    NDM_type:  # NDM型金属β-内酰胺酶
+      description: 产NDM型金属β-内酰胺酶  # 说明
+      first_line:  # 一线治疗
+      - 头孢他啶/阿维巴坦 + 氨曲南（联合方案）
+      alternative:  # 替代方案
+      - 替加环素（非血流感染）+ 多黏菌素
+      notes: 头孢他啶/阿维巴坦单药对NDM无效；氨曲南可被NDM水解但阿维巴坦可抑制共存的丝氨酸酶  # 备注
+  AmpC:  # AmpC β-内酰胺酶
+    organisms:  # 相关菌种
+    - 弗劳地柠檬酸杆菌复合群 (Citrobacter freundii complex)
+    - 阴沟肠杆菌复合群 (Enterobacter cloacae complex)
+    - 蜂房哈夫尼亚菌 (Hafnia alvei)
+    - 产气克雷伯菌 (Klebsiella aerogenes)
+    - 摩根摩根菌 (Morganella morganii)
+    - 普罗威登菌属 (Providencia spp.)
+    - 黏质沙雷菌 (Serratia marcescens)
+    - 小肠结肠炎耶尔森菌 (Yersinia enterocolitica)
+    risk_stratification:  # 风险分层
+      moderate_to_high:  # 中至高风险
+        organisms:  # 相关菌种
+        - 弗劳地柠檬酸杆菌复合群
+        - 阴沟肠杆菌复合群
+        - 产气克雷伯菌
+        rule: 即使初始三代头孢敏感，治疗中诱导AmpC去阻遏突变风险较高  # 规则
+        avoid:  # 应避免
+        - 头孢曲松（单药）
+        - 头孢他啶（单药）
+        - 头孢噻肟（单药）
+        recommended:  # 推荐方案
+        - 头孢吡肟
+        - 碳青霉烯类
+        - 头孢他啶-阿维巴坦
+      lower_risk:  # 较低风险
+        organisms:  # 相关菌种
+        - 摩根摩根菌
+        - 普罗威登菌属
+        - 黏质沙雷菌
+        rule: AmpC诱导风险相对较低，三代头孢可在密切监测下使用  # 规则
+    screening:  # 筛查
+      method: 头孢西丁耐药可作为AmpC产酶筛查指标  # 方法
+      esbl_interference: AmpC产酶菌可能导致ESBL确证试验假阴性  # ESBL干扰
+      clinical_note: 治疗开始后数日内可能产生耐药，最初敏感的分离株可能变得耐药，需对后续分离株进行检测  # 临床提示
+    avoid:  # 应避免
+    - 头孢曲松
+    - 头孢他啶（单药）
+    recommended:  # 推荐方案
+    - 头孢吡肟
+    - 碳青霉烯类
+  intrinsic_resistance:  # 天然(固有)耐药
+  - organisms:
+    - 奇异变形杆菌
+    - 摩根摩根菌
+    - 普罗威登菌属
+    drug: 呋喃妥因  # 药品
+    action: 自动报告耐药  # 处理措施
+  - organisms:
+    - 奇异变形杆菌
+    - 摩根摩根菌
+    - 黏质沙雷菌
+    - 普罗威登菌属
+    drug: 黏菌素/多黏菌素  # 药品
+    action: 自动报告耐药  # 处理措施
+  - organisms:
+    - 肺炎克雷伯菌
+    - 产酸克雷伯菌
+    drug: 氨苄西林  # 药品
+    action: 自动报告耐药（产染色体β-内酰胺酶）  # 处理措施
+  - organisms:
+    - 阴沟肠杆菌复合群
+    - 弗氏柠檬酸杆菌复合群
+    - 产气克雷伯菌
+    - 黏质沙雷菌
+    - 摩根摩根菌
+    drug: 头孢唑林/头孢呋辛（一/二代头孢）  # 药品
+    action: AmpC产酶菌不推荐使用一/二代头孢  # 处理措施
+salmonella_shigella_rules:  # 沙门菌/志贺菌规则
+  description: 沙门菌/志贺菌属特殊检测和报告规则（注释67-71）  # 说明
+  required_tests:  # 必检项目
+  - 氨苄西林
+  - 氟喹诺酮类(环丙沙星)
+  - 甲氧苄啶-磺胺甲噁唑
+  do_not_routinely_test: 沙门菌血流感染不常规检测氨基糖苷类或头孢菌素类（注释67）  # 不常规检测
+  cephalosporin_warning: 第一、二代头孢菌素和头霉素类在体外可能对沙门菌和志贺菌具有抗菌活性，但临床无效，不应报告敏感  # 头孢菌素警告
+  fluoroquinolone_rules:  # 氟喹诺酮规则
+  - 环丙沙星MIC可作为整个氟喹诺酮类耐药性的预测指标（注释68）
+  - 氟喹诺酮耐药沙门菌感染存在临床治疗失败风险（注释70）
+  - 仅环丙沙星/左氧氟沙星/氧氟沙星有沙门菌折点（注释70）
+  - 培氟沙星纸片可作为沙门菌环丙沙星敏感性替代判定指标（注释71）
+  - aac(6')-Ib-cr机制可导致环丙沙星低水平耐药（注释71）
+  breakpoints_differ: 沙门菌使用更严格的喹诺酮折点：环丙沙星 S≤0.06/R≥1，左氧氟沙星 S≤0.12/R≥2  # 折点差异

@@ -1,0 +1,350 @@
+# ═══════════════════════════════════════════
+# drugs.yaml
+# 肠杆菌目抗菌药物知识库
+# ═══════════════════════════════════════════
+
+drug_details:  # 药物详细信息
+- name: 阿米卡星
+  english: Amikacin  # 英文名
+  class: 氨基糖苷类  # 药物类别
+  mechanism: 作用于细菌核糖体30S亚基，抑制蛋白质合成  # 作用机制
+  spectrum:  # 抗菌谱
+    gram_negative:  # 革兰阴性菌
+    - 大肠埃希菌
+    - 肺炎克雷伯菌
+    - 肠杆菌属
+    - 铜绿假单胞菌
+    - 沙雷菌属
+    - 变形杆菌属
+    gram_positive:  # 革兰阳性菌
+    - 金黄色葡萄球菌（部分）
+    no_coverage:  # 不覆盖
+    - 厌氧菌
+    - 链球菌（多数）
+  dosing:  # 剂量方案
+    adult_normal: 15mg/kg/d qd 或 7.5mg/kg q12h IV/IM  # 成人常规剂量
+    renal_adjustment:  # 肾功能调整
+      CrCl_50_90: 正常剂量，给药间隔延长至60-90%
+      CrCl_10_50: 7.5mg/kg q24-48h
+      CrCl_below_10: 7.5mg/kg，根据血药浓度调整
+    max_daily: 1.5g/d  # 每日最大剂量
+    max_duration: 10天  # 最长疗程
+  tdm:  # 血药浓度监测
+    peak_q12h: 15-30 μg/mL  # 峰浓度(q12h)
+    trough_q12h: 5-10 μg/mL  # 谷浓度(q12h)
+    peak_qd: 56-64 μg/mL  # 峰浓度(qd)
+    trough_qd: <1 μg/mL  # 谷浓度(qd)
+  adverse_effects:  # 不良反应
+  - 耳毒性（听力损失、耳鸣）
+  - 肾毒性（少尿、蛋白尿、BUN升高）
+  - 神经肌肉阻滞
+  - 头痛、震颤
+  contraindications:  # 禁忌症
+  - 氨基糖苷类过敏
+  precautions:  # 注意事项
+  - 老年患者慎用
+  - 监测肾功能和听力
+  - 避免与其他肾毒性/耳毒性药物合用
+  - 妊娠D级
+  interactions:  # 药物相互作用
+  - 与β-内酰胺类不可同瓶输注
+  - 与万古霉素不可同瓶输注
+  - 与呋塞米等耳毒性药物协同毒性
+- name: 美罗培南
+  english: Meropenem  # 英文名
+  class: 碳青霉烯类  # 药物类别
+  mechanism: 作用于细菌细胞壁PBP，抑制细胞壁合成。对多数β-内酰胺酶稳定。  # 作用机制
+  spectrum:  # 抗菌谱
+    gram_negative:  # 革兰阴性菌
+    - 肠杆菌目
+    - 铜绿假单胞菌
+    - 不动杆菌属
+    gram_positive:  # 革兰阳性菌
+    - 链球菌
+    - 肺炎链球菌
+    anaerobes:  # 厌氧菌
+    - 脆弱拟杆菌
+    - 梭状芽胞杆菌
+    no_coverage:  # 不覆盖
+    - MRSA
+    - 屎肠球菌
+  dosing:  # 剂量方案
+    standard: 1g q8h IV（30分钟输注）  # 标准来源
+    severe_or_resistant: 2g q8h IV（3小时延长输注）  # 重症/耐药
+    meningitis: 2g q8h IV  # 脑膜炎
+    renal_adjustment:  # 肾功能调整
+      CrCl_26_50: 1g q12h
+      CrCl_10_25: 500mg q12h
+      CrCl_below_10: 500mg q24h
+  adverse_effects:  # 不良反应
+  - 腹泻
+  - 恶心呕吐
+  - 皮疹
+  - 癫痫发作（罕见，低于亚胺培南）
+  contraindications:  # 禁忌症
+  - 碳青霉烯类过敏
+  precautions:  # 注意事项
+  - CNS感染时优于亚胺培南（癫痫风险更低）
+  - 延长输注可优化PK/PD
+- name: 头孢他啶/阿维巴坦
+  english: Ceftazidime/Avibactam  # 英文名
+  class: 头孢菌素/β-内酰胺酶抑制剂复方  # 药物类别
+  mechanism: 头孢他啶抑制细胞壁合成，阿维巴坦抑制A类（KPC/ESBL）、C类（AmpC）和部分D类（OXA-48）β-内酰胺酶  # 作用机制
+  spectrum:  # 抗菌谱
+    key_coverage:  # 关键覆盖范围
+    - 产KPC酶的CRE
+    - 产ESBL的肠杆菌目
+    - 产AmpC酶的肠杆菌目
+    - 铜绿假单胞菌
+    no_coverage:  # 不覆盖
+    - 产NDM等金属β-内酰胺酶（B类）的菌株
+    - 不动杆菌（活性有限）
+    - 厌氧菌
+  dosing:  # 剂量方案
+    standard: 2.5g (头孢他啶2g/阿维巴坦0.5g) q8h IV，2小时输注  # 标准来源
+    renal_adjustment:  # 肾功能调整
+      CrCl_31_50: 1.25g q8h
+      CrCl_16_30: 0.94g q12h
+      CrCl_6_15: 0.94g q24h
+  clinical_evidence: CRKP感染治疗的一线推荐，多项RCT证实优于多黏菌素方案  # 临床证据
+  adverse_effects:  # 不良反应
+  - 腹泻
+  - 恶心
+  - 皮疹
+  key_notes: 对NDM型金属酶无效！联合氨曲南可克服NDM耐药。  # 关键提示
+- name: 替加环素
+  english: Tigecycline  # 英文名
+  class: 甘氨酰环素类  # 药物类别
+  mechanism: 作用于30S核糖体亚基，抑制蛋白质合成。可克服常见的四环素耐药机制。  # 作用机制
+  spectrum:  # 抗菌谱
+    gram_positive:  # 革兰阳性菌
+    - MRSA
+    - VRE
+    gram_negative:  # 革兰阴性菌
+    - ESBL+肠杆菌目
+    - CRE（部分）
+    - 鲍曼不动杆菌
+    anaerobes:  # 厌氧菌
+    - 多数厌氧菌
+    no_coverage:  # 不覆盖
+    - 铜绿假单胞菌（天然耐药）
+    - 变形杆菌属（天然耐药）
+  dosing:  # 剂量方案
+    standard: 负荷100mg IV，后50mg q12h IV  # 标准来源
+    high_dose: 负荷200mg IV，后100mg q12h IV（重症感染）  # 大剂量方案
+    notes: 无需肾功能调整；严重肝功能不全需减量  # 备注
+  adverse_effects:  # 不良反应
+  - 恶心呕吐（常见）
+  - FDA黑框警告：增加全因死亡风险
+  contraindications:  # 禁忌症
+  - 四环素类过敏
+  key_notes: 血药浓度低，不适合单药治疗血流感染。常作为联合方案组分。  # 关键提示
+- name: 多黏菌素B
+  english: Polymyxin B  # 英文名
+  class: 多黏菌素类  # 药物类别
+  mechanism: 与细菌外膜脂多糖结合，破坏细胞膜通透性  # 作用机制
+  spectrum:  # 抗菌谱
+    gram_negative:  # 革兰阴性菌
+    - CRE
+    - CRPA
+    - CRAB
+    - 多数肠杆菌目
+    no_coverage:  # 不覆盖
+    - 革兰阳性菌
+    - 厌氧菌
+    - 变形杆菌属
+    - 沙雷菌属（天然耐药）
+  dosing:  # 剂量方案
+    standard: 负荷2.0-2.5mg/kg IV（1小时输注），维持1.25-1.5mg/kg/d 分2次  # 标准来源
+    notes: 按实际体重计算；无需肾功能调整（非经肾排泄）  # 备注
+  adverse_effects:  # 不良反应
+  - 急性肾损伤（发生率20-60%）
+  - 神经毒性（感觉异常、头晕）
+  - 色素沉着
+  key_notes: 最后手段药物（last resort）。建议联合其他活性药物使用，不推荐单药治疗。  # 关键提示
+- name: 磷霉素
+  english: Fosfomycin  # 英文名
+  class: 磷霉素类  # 药物类别
+  mechanism: 抑制细菌细胞壁合成早期阶段（MurA酶）  # 作用机制
+  spectrum:  # 抗菌谱
+    gram_negative:  # 革兰阴性菌
+    - 大肠埃希菌
+    - 部分肺炎克雷伯菌
+    - 部分CRE
+    gram_positive:  # 革兰阳性菌
+    - 金黄色葡萄球菌
+    - 肠球菌
+  dosing:  # 剂量方案
+    oral_UTI: 3g 单次 PO（仅限单纯性大肠埃希菌UTI）  # 口服(尿路感染)
+    IV_severe: 4g q6-8h IV（严重感染，联合用药）  # 静脉(重症)
+    notes: 静脉制剂含大量钠，心衰/高血压患者注意  # 备注
+  adverse_effects:  # 不良反应
+  - 腹泻
+  - 恶心
+  - 高钠血症（静脉制剂）
+  key_notes: 联合用药组分，不推荐单药治疗严重感染。对KPC型CRE有一定活性。  # 关键提示
+administrative_tiers:  # 国家分级管理目录
+  standard: 国家卫健委抗菌药物分级管理办法  # 标准来源
+  tiers:  # 分级
+    非限制使用级:
+      alias: 一线药物  # 别名
+      description: 经长期临床应用证明安全、有效，对细菌耐药性影响较小，价格相对较低的抗菌药物。临床各级医师均可使用。  # 说明
+      drugs:  # 药物列表
+      - name: 阿莫西林
+        english: Amoxicillin  # 英文名
+        class: 青霉素类  # 药物类别
+        route: 口服  # 给药途径
+        spectrum: 大肠埃希菌、流感嗜血杆菌、肺炎链球菌等  # 抗菌谱
+        notes: 对产ESBL菌株无效  # 备注
+      - name: 阿莫西林/克拉维酸
+        english: Amoxicillin/Clavulanic acid  # 英文名
+        class: β-内酰胺酶抑制剂复方  # 药物类别
+        route: 口服/静脉  # 给药途径
+        spectrum: 产β-内酰胺酶的大肠埃希菌、肺炎克雷伯菌等  # 抗菌谱
+        notes: 对产ESBL菌株仅体外敏感，临床疗效有限  # 备注
+      - name: 头孢呋辛
+        english: Cefuroxime  # 英文名
+        class: 第二代头孢菌素  # 药物类别
+        route: 口服/静脉  # 给药途径
+        spectrum: 大肠埃希菌、肺炎克雷伯菌、流感嗜血杆菌等  # 抗菌谱
+        notes: 对产ESBL菌株无效  # 备注
+      - name: 头孢曲松
+        english: Ceftriaxone  # 英文名
+        class: 第三代头孢菌素  # 药物类别
+        route: 静脉/肌注  # 给药途径
+        spectrum: 大肠埃希菌、肺炎克雷伯菌、奇异变形杆菌等  # 抗菌谱
+        notes: 对产ESBL菌株无效；每日一次给药  # 备注
+      - name: 头孢他啶
+        english: Ceftazidime  # 英文名
+        class: 第三代头孢菌素  # 药物类别
+        route: 静脉  # 给药途径
+        spectrum: 铜绿假单胞菌、肠杆菌目等  # 抗菌谱
+        notes: 抗假单胞菌活性强  # 备注
+      - name: 左氧氟沙星
+        english: Levofloxacin  # 英文名
+        class: 氟喹诺酮类  # 药物类别
+        route: 口服/静脉  # 给药途径
+        spectrum: 肠杆菌目、铜绿假单胞菌、非典型病原体等  # 抗菌谱
+        notes: 避免用于18岁以下患者  # 备注
+      - name: 庆大霉素
+        english: Gentamicin  # 英文名
+        class: 氨基糖苷类  # 药物类别
+        route: 静脉/肌注  # 给药途径
+        spectrum: 肠杆菌目、铜绿假单胞菌等  # 抗菌谱
+        notes: 需监测肾功能和耳毒性  # 备注
+      - name: 复方磺胺甲噁唑
+        english: Trimethoprim-Sulfamethoxazole  # 英文名
+        class: 磺胺类  # 药物类别
+        route: 口服/静脉  # 给药途径
+        spectrum: 大肠埃希菌、肺炎克雷伯菌、嗜麦芽窄食单胞菌等  # 抗菌谱
+        notes: 注意过敏反应和血液系统不良反应  # 备注
+      - name: 氨苄西林
+        english: Ampicillin  # 英文名
+        class: 青霉素类  # 药物类别
+        route: 静脉  # 给药途径
+        spectrum: 大肠埃希菌（部分）、肠球菌等  # 抗菌谱
+        notes: 耐药率高，多用于肠球菌感染  # 备注
+    限制使用级:
+      alias: 二线药物  # 别名
+      description: 与非限制使用级抗菌药物相比较，在疗效、安全性、对细菌耐药性影响、药品价格等方面存在局限性。需高年资主治及以上医师才能开具。  # 说明
+      drugs:  # 药物列表
+      - name: 哌拉西林/他唑巴坦
+        english: Piperacillin/Tazobactam  # 英文名
+        class: β-内酰胺酶抑制剂复方  # 药物类别
+        route: 静脉  # 给药途径
+        spectrum: 肠杆菌目、铜绿假单胞菌、厌氧菌等  # 抗菌谱
+        notes: 广谱；对产ESBL菌株有一定活性  # 备注
+      - name: 头孢吡肟
+        english: Cefepime  # 英文名
+        class: 第四代头孢菌素  # 药物类别
+        route: 静脉  # 给药途径
+        spectrum: 肠杆菌目（含部分AmpC产酶株）、铜绿假单胞菌等  # 抗菌谱
+        notes: 对部分ESBL产酶株有效  # 备注
+      - name: 头孢哌酮/舒巴坦
+        english: Cefoperazone/Sulbactam  # 英文名
+        class: β-内酰胺酶抑制剂复方  # 药物类别
+        route: 静脉  # 给药途径
+        spectrum: 肠杆菌目、铜绿假单胞菌、不动杆菌等  # 抗菌谱
+        notes: 舒巴坦对不动杆菌有固有活性  # 备注
+      - name: 阿米卡星
+        english: Amikacin  # 英文名
+        class: 氨基糖苷类  # 药物类别
+        route: 静脉/肌注  # 给药途径
+        spectrum: 肠杆菌目、铜绿假单胞菌等  # 抗菌谱
+        notes: 对多数氨基糖苷修饰酶稳定；需监测肾功能和听力  # 备注
+      - name: 厄他培南
+        english: Ertapenem  # 英文名
+        class: 碳青霉烯类  # 药物类别
+        route: 静脉/肌注  # 给药途径
+        spectrum: 肠杆菌目（非铜绿假单胞菌）  # 抗菌谱
+        notes: 每日一次；不覆盖铜绿假单胞菌和不动杆菌  # 备注
+      - name: 氨曲南
+        english: Aztreonam  # 英文名
+        class: 单环β-内酰胺类  # 药物类别
+        route: 静脉  # 给药途径
+        spectrum: 革兰阴性菌（肠杆菌目、铜绿假单胞菌）  # 抗菌谱
+        notes: 不覆盖革兰阳性菌和厌氧菌；青霉素过敏患者可用  # 备注
+      - name: 头孢西丁
+        english: Cefoxitin  # 英文名
+        class: 头霉素类  # 药物类别
+        route: 静脉  # 给药途径
+        spectrum: 肠杆菌目、厌氧菌  # 抗菌谱
+        notes: 对ESBL产酶株稳定但MIC较高时疗效不确定  # 备注
+    特殊使用级:
+      alias: 三线药物  # 别名
+      description: 具有明显或严重不良反应、需严格控制使用的抗菌药物。须由副高及以上医师会诊同意后方可使用，需紧急情况下可越级使用但须补办手续。  # 说明
+      drugs:  # 药物列表
+      - name: 亚胺培南/西司他丁
+        english: Imipenem/Cilastatin  # 英文名
+        class: 碳青霉烯类  # 药物类别
+        route: 静脉  # 给药途径
+        spectrum: 肠杆菌目、铜绿假单胞菌、不动杆菌、厌氧菌等  # 抗菌谱
+        notes: 超广谱；有癫痫风险；对CRKP无效  # 备注
+      - name: 美罗培南
+        english: Meropenem  # 英文名
+        class: 碳青霉烯类  # 药物类别
+        route: 静脉  # 给药途径
+        spectrum: 同亚胺培南，CNS安全性更好  # 抗菌谱
+        notes: 可用于脑膜炎；对CRKP无效  # 备注
+      - name: 头孢他啶/阿维巴坦
+        english: Ceftazidime/Avibactam  # 英文名
+        class: 新型β-内酰胺酶抑制剂复方  # 药物类别
+        route: 静脉  # 给药途径
+        spectrum: 产KPC型碳青霉烯酶的肠杆菌目  # 抗菌谱
+        notes: 对产NDM金属β-内酰胺酶菌株无效；CRE首选治疗之一  # 备注
+      - name: 亚胺培南/瑞来巴坦
+        english: Imipenem/Relebactam  # 英文名
+        class: 碳青霉烯类+β-内酰胺酶抑制剂  # 药物类别
+        route: 静脉  # 给药途径
+        spectrum: 产KPC酶的CRE  # 抗菌谱
+        notes: 对产NDM菌株无效  # 备注
+      - name: 美罗培南/法硼巴坦
+        english: Meropenem/Vaborbactam  # 英文名
+        class: 碳青霉烯类+β-内酰胺酶抑制剂  # 药物类别
+        route: 静脉  # 给药途径
+        spectrum: 产KPC酶的CRE  # 抗菌谱
+        notes: 对产NDM菌株无效  # 备注
+      - name: 替加环素
+        english: Tigecycline  # 英文名
+        class: 甘氨酰环素类  # 药物类别
+        route: 静脉  # 给药途径
+        spectrum: MRSA、VRE、ESBL+肠杆菌目、CRE、不动杆菌等  # 抗菌谱
+        notes: 不适合血流感染（血药浓度低）；FDA黑框警告增加死亡风险；对铜绿假单胞菌天然耐药  # 备注
+      - name: 多黏菌素B
+        english: Polymyxin B  # 英文名
+        class: 多黏菌素类  # 药物类别
+        route: 静脉  # 给药途径
+        spectrum: CRE、CRPA、CRAB等多重耐药革兰阴性菌  # 抗菌谱
+        notes: 肾毒性和神经毒性大；通常作为最后手段  # 备注
+      - name: 多黏菌素E（黏菌素）
+        english: Colistin (Polymyxin E)  # 英文名
+        class: 多黏菌素类  # 药物类别
+        route: 静脉/雾化  # 给药途径
+        spectrum: 同多黏菌素B  # 抗菌谱
+        notes: 前药形式给药；肾毒性较多黏菌素B更大  # 备注
+      - name: 磷霉素
+        english: Fosfomycin  # 英文名
+        class: 磷霉素类  # 药物类别
+        route: 口服/静脉  # 给药途径
+        spectrum: 大肠埃希菌（UTI）、部分CRE  # 抗菌谱
+        notes: 口服仅批准用于单纯性尿路感染；静脉制剂可用于严重感染（联合用药）  # 备注

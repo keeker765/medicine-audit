@@ -1,0 +1,239 @@
+/* 知识图谱 - teal 医疗主题（copilot 版结构 + 色系替换） */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "Inter", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0fdfa 100%);
+  color: #1e293b;
+  overflow: hidden; height: 100vh;
+}
+
+/* ── 工具栏 ── */
+#toolbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid #cbd5e1;
+  padding: 10px 20px;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+#toolbar h1 {
+  font-size: 16px; font-weight: 700;
+  color: #0891b2;
+  white-space: nowrap;
+}
+.back-link {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px;
+  border: 1.5px solid #cbd5e1; border-radius: 8px;
+  background: transparent; color: #64748b;
+  cursor: pointer; text-decoration: none;
+  transition: all 0.2s;
+}
+.back-link:hover {
+  border-color: #0891b2; color: #0891b2;
+  background: rgba(8, 145, 178, 0.06);
+}
+.search-wrap {
+  position: relative;
+  flex: 1; min-width: 180px; max-width: 340px;
+}
+#search {
+  width: 100%;
+  padding: 7px 14px; border-radius: 20px;
+  border: 1.5px solid #cbd5e1;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1e293b;
+  font-size: 13px; outline: none;
+  font-family: inherit;
+}
+#search:focus { border-color: #0891b2; box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.15); }
+#search::placeholder { color: #94a3b8; }
+
+/* ── 搜索下拉 ── */
+.search-results {
+  position: absolute; top: 100%; left: 0; right: 0;
+  background: #fff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  max-height: 300px; overflow-y: auto;
+  z-index: 30; margin-top: 4px;
+  display: none;
+}
+.search-result-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  cursor: pointer; transition: background 0.2s;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 12px;
+}
+.search-result-item:last-child { border-bottom: none; }
+.search-result-item:hover { background: rgba(8, 145, 178, 0.06); }
+.search-result-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.search-result-name { font-weight: 600; color: #1e293b; }
+.search-result-type { font-size: 10px; color: #94a3b8; }
+.search-no-results { padding: 14px; text-align: center; color: #94a3b8; font-size: 12px; }
+
+/* ── 按钮 ── */
+.btn {
+  padding: 6px 16px; border-radius: 16px;
+  border: 1.5px solid #cbd5e1;
+  background: rgba(255, 255, 255, 0.8);
+  color: #475569;
+  font-size: 12px; cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.btn:hover { background: #e2e8f0; color: #1e293b; border-color: #0891b2; }
+.btn.active { background: #0891b2; color: #fff; border-color: #0891b2; font-weight: 600; }
+
+/* ── 画布 ── */
+#cy { position: fixed; top: 52px; left: 0; right: 0; bottom: 0; }
+
+/* ── 图例 ── */
+.legend {
+  position: fixed; bottom: 16px; left: 16px; z-index: 99;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 14px 18px; font-size: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+.legend-title { font-weight: 700; color: #0891b2; margin-bottom: 6px; }
+.legend-item { display: flex; align-items: center; gap: 8px; margin: 5px 0; color: #475569; }
+.legend-dot { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.08); }
+
+/* ── 详情面板（copilot 版结构） ── */
+#detail {
+  position: fixed; top: 52px; right: 0; width: 380px; bottom: 0; z-index: 99;
+  background: rgba(255, 255, 255, 0.97);
+  border-left: 2px solid #cbd5e1;
+  padding: 20px; overflow-y: auto; display: none;
+  font-size: 14px; line-height: 1.8;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.04);
+}
+#detail h2 { color: #0891b2; font-size: 17px; margin-bottom: 12px; }
+#detail .tag {
+  display: inline-block; padding: 3px 10px;
+  border-radius: 12px; font-size: 11px; margin: 2px;
+  border: 1px solid #cbd5e1;
+  cursor: pointer; transition: all 0.15s;
+}
+#detail .tag:hover { filter: brightness(0.92); }
+#detail .section { margin-top: 14px; padding-top: 10px; border-top: 1px solid #e2e8f0; }
+#detail .section-title {
+  color: #64748b; font-size: 11px; text-transform: uppercase;
+  margin-bottom: 4px; letter-spacing: 1px; font-weight: 700;
+}
+#detail .close-btn {
+  position: absolute; top: 12px; right: 14px;
+  cursor: pointer; font-size: 18px; color: #94a3b8;
+  background: none; border: none;
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px; transition: all 0.2s;
+}
+#detail .close-btn:hover { color: #e11d48; background: rgba(225,29,72,0.06); }
+
+/* ── 注释卡片（copilot 风格） ── */
+.anno-card {
+  margin: 10px 0; padding: 12px;
+  background: rgba(8, 145, 178, 0.06);
+  border-radius: 10px;
+  border: 1px solid rgba(8, 145, 178, 0.15);
+  line-height: 1.8;
+}
+.anno-title { font-weight: 700; color: #0e7490; font-size: 13px; }
+.anno-desc { margin: 4px 0; font-size: 12px; color: #334155; }
+.anno-example {
+  color: #059669; font-size: 12px; font-style: italic;
+  padding: 6px 8px; background: rgba(5, 150, 105, 0.06);
+  border-radius: 6px; margin: 4px 0;
+}
+.anno-clinical {
+  color: #dc2626; font-size: 12px;
+  padding: 6px 8px; background: rgba(220, 38, 38, 0.06);
+  border-radius: 6px; margin: 4px 0;
+}
+.anno-loading { color: #94a3b8; font-size: 12px; font-style: italic; }
+
+/* ── 展开按钮 ── */
+.expand-btn {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  width: 100%; padding: 9px;
+  background: #0891b2; color: white;
+  border: none; border-radius: 8px;
+  font-size: 12px; font-weight: 500;
+  cursor: pointer; font-family: inherit;
+  transition: all 0.2s;
+  margin-top: 12px;
+}
+.expand-btn:hover { background: #0e7490; }
+
+/* ── 状态 ── */
+#stats {
+  position: fixed; bottom: 10px; right: 20px;
+  font-size: 11px; color: #94a3b8;
+  font-style: italic;
+}
+
+/* ── 滚动条 ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(148,163,184,0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(148,163,184,0.35); }
+
+/* ── 响应式 ── */
+@media (max-width: 768px) {
+  #toolbar { gap: 6px; padding: 8px 12px; }
+  #toolbar h1 { display: none; }
+  .search-wrap { max-width: none; min-width: 100px; }
+  #detail { width: 100%; }
+}
+
+/* ── 视图切换按钮 ── */
+.view-switch {
+  background: #0e7490; color: #fff; border-color: #0e7490;
+  font-weight: 600;
+}
+.view-switch:hover { background: #0891b2; }
+
+/* ── 树状图样式 ── */
+#chart { position: fixed; top: 74px; left: 0; right: 0; bottom: 0; }
+#breadcrumb {
+  position: fixed; top: 52px; left: 20px; right: 20px; z-index: 99;
+  font-size: 12px; color: #64748b; padding: 6px 0;
+}
+#breadcrumb span { color: #334155; cursor: pointer; }
+#breadcrumb span:hover { color: #0891b2; text-decoration: underline; }
+#breadcrumb .sep { color: #94a3b8; margin: 0 5px; cursor: default; }
+
+#tooltip {
+  position: fixed; z-index: 200; pointer-events: none;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 12px 16px; font-size: 12px; line-height: 1.7;
+  max-width: 460px; display: none; color: #1e293b;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.node circle {
+  stroke-width: 2.5px; cursor: pointer;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+.node text {
+  font-size: 12.5px; fill: #1e293b; cursor: pointer;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+.node--leaf text { fill: #475569; font-size: 11px; }
+.link {
+  fill: none;
+  stroke: #cbd5e1;
+  stroke-width: 1.5px;
+  stroke-opacity: 0.7;
+}
+.node--match circle { stroke: #dc2626 !important; stroke-width: 3.5px; }
+.node--match text { fill: #dc2626 !important; font-weight: 700; }

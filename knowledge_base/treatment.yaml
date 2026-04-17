@@ -1,0 +1,114 @@
+# ═══════════════════════════════════════════
+# treatment.yaml
+# 肠杆菌目抗菌药物知识库
+# ═══════════════════════════════════════════
+
+treatment_guidelines:  # 治疗指南
+  肺炎克雷伯菌:
+    english: Klebsiella pneumoniae  # 英文名
+    characteristics: 革兰阴性杆菌，肠杆菌目，常见院内感染病原菌。可产生ESBL、KPC型碳青霉烯酶、NDM型金属酶等多种耐药机制。  # 菌种特征
+    common_infections:  # 常见感染类型
+    - 肺炎（包括呼吸机相关肺炎VAP）
+    - 血流感染/菌血症
+    - 尿路感染
+    - 腹腔感染
+    - 肝脓肿
+    - 手术部位感染
+    treatment_by_resistance:  # 按耐药类型的治疗方案
+      敏感株（非产ESBL）:
+        first_line:  # 一线治疗
+        - 头孢曲松 2g q24h IV
+        - 头孢噻肟 2g q8h IV
+        alternative:  # 替代方案
+        - 左氧氟沙星 500mg q24h IV
+        - 哌拉西林/他唑巴坦 4.5g q8h IV
+        oral_stepdown:  # 口服序贯治疗
+        - 左氧氟沙星 500mg q24h PO
+        - 头孢呋辛酯 500mg q12h PO
+      产ESBL株:
+        first_line:  # 一线治疗
+        - 美罗培南 1g q8h IV
+        - 亚胺培南/西司他丁 500mg q6h IV
+        - 厄他培南 1g q24h IV（轻中度感染）
+        alternative:  # 替代方案
+        - 哌拉西林/他唑巴坦 4.5g q6h IV（轻中度感染，MIC≤16时）
+        - 头孢哌酮/舒巴坦 3g q8h IV
+        notes: 碳青霉烯类是ESBL产酶株的首选治疗；严重感染避免使用头孢菌素  # 备注
+      碳青霉烯耐药株(CRKP):
+        enzyme_type_unknown:  # 酶型未知时
+          empiric:  # 经验性方案
+          - 头孢他啶/阿维巴坦 2.5g q8h IV（首选经验性治疗，覆盖KPC）
+          notes: 尽快进行碳青霉烯酶分型检测（KPC/NDM/OXA）指导后续治疗调整  # 备注
+        KPC_producing:  # 产KPC酶
+          first_line:  # 一线治疗
+          - 头孢他啶/阿维巴坦 2.5g q8h IV
+          alternative:  # 替代方案
+          - 亚胺培南/瑞来巴坦 1.25g q6h IV
+          - 美罗培南/法硼巴坦 4g q8h IV
+          combination_severe:  # 重症联合方案
+          - 头孢他啶/阿维巴坦 + 氨曲南 2g q8h IV
+          - 替加环素 100mg 负荷后50mg q12h IV + 多黏菌素B
+          last_resort:  # 最后手段
+          - 多黏菌素B 负荷剂量后1.5mg/kg/d 分2次 IV（联合其他活性药物）
+        NDM_producing:  # 产NDM酶
+          first_line:  # 一线治疗
+          - 头孢他啶/阿维巴坦 2.5g q8h + 氨曲南 2g q8h IV（联合方案）
+          alternative:  # 替代方案
+          - 替加环素（大剂量）+ 多黏菌素B + 磷霉素 IV
+          notes: 单药头孢他啶/阿维巴坦对NDM无效。氨曲南虽可被NDM水解，但阿维巴坦可抑制共存的KPC/SHV等丝氨酸酶，联合后氨曲南恢复活性。  # 备注
+    special_populations:  # 特殊人群
+      肾功能不全: 需根据CrCl调整剂量，特别是碳青霉烯类、氨基糖苷类、多黏菌素
+      老年患者: 优先选择肾毒性小的药物，避免氨基糖苷类单药，监测肾功能
+      ICU患者: 考虑延长输注时间（美罗培南3小时输注）以优化PK/PD
+  大肠埃希菌:
+    english: Escherichia coli  # 英文名
+    characteristics: 革兰阴性杆菌，最常见的社区获得性和院内感染病原菌之一。  # 菌种特征
+    common_infections:  # 常见感染类型
+    - 尿路感染（最常见）
+    - 腹腔感染
+    - 血流感染
+    - 胆道感染
+    - 新生儿脑膜炎
+    treatment_by_resistance:  # 按耐药类型的治疗方案
+      敏感株:
+        UTI_uncomplicated:
+        - 磷霉素 3g 单次 PO
+        - 呋喃妥因 100mg q12h PO × 5天
+        UTI_complicated:
+        - 头孢曲松 2g q24h IV
+        - 左氧氟沙星 750mg q24h IV
+        systemic:  # 系统感染折点
+        - 头孢曲松 2g q24h IV
+        - 哌拉西林/他唑巴坦 4.5g q8h IV
+      产ESBL株:
+        first_line:  # 一线治疗
+        - 美罗培南 1g q8h IV
+        - 厄他培南 1g q24h IV
+        UTI:
+        - 磷霉素 3g PO（单纯性）
+        - 厄他培南 1g q24h IV（复杂性）
+        notes: 治疗原则同肺炎克雷伯菌产ESBL株  # 备注
+empiric_therapy:  # 经验性治疗
+  呼吸机相关肺炎(VAP):
+    common_pathogens:  # 常见病原菌
+    - 肺炎克雷伯菌
+    - 铜绿假单胞菌
+    - 鲍曼不动杆菌
+    - 金黄色葡萄球菌
+    initial_empiric: 根据本地流行病学和耐药数据选择。一般方案：碳青霉烯类 或 哌拉西林/他唑巴坦 + 抗MRSA药物（万古霉素/利奈唑胺），待药敏结果回报后降阶梯治疗。  # 初始经验性治疗
+    duration: 7天（临床改善后可缩短）  # 疗程
+  腹腔感染:
+    common_pathogens:  # 常见病原菌
+    - 大肠埃希菌
+    - 肺炎克雷伯菌
+    - 厌氧菌
+    - 肠球菌
+    initial_empiric: 哌拉西林/他唑巴坦 4.5g q6-8h IV 或 美罗培南 1g q8h IV（重症）  # 初始经验性治疗
+    duration: 感染源控制后4天  # 疗程
+  血流感染:
+    common_pathogens:  # 常见病原菌
+    - 大肠埃希菌
+    - 肺炎克雷伯菌
+    - 金黄色葡萄球菌
+    initial_empiric: 碳青霉烯类 ± 万古霉素，待血培养和药敏结果调整  # 初始经验性治疗
+    duration: 至少14天（无并发症）  # 疗程

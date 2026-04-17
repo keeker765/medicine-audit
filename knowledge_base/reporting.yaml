@@ -1,0 +1,490 @@
+# ═══════════════════════════════════════════
+# reporting.yaml
+# 肠杆菌目抗菌药物知识库
+# ═══════════════════════════════════════════
+
+cascade_reporting:  # CLSI级联报告规则
+  standard: CLSI M100 第33版 表1A  # 标准来源
+  note: 4级分类 + 泌尿道专用组，取代原3级分类  # 备注
+  tiers:  # 分级
+    tier1_group_A:
+      label: 第1级 — 常规首选检测和报告  # 标签
+      group: Group A  # 分组
+      description: 第1级：常规首选检测和报告药物  # 说明
+      drugs:  # 药物列表
+      - 氨苄西林
+      - 头孢唑林
+      - 头孢呋辛
+      - 头孢噻肟或头孢曲松
+      - 头孢吡肟
+      - 厄他培南
+    tier2_group_B:
+      label: 第2级 — 常规检测 / 选择性级联报告  # 标签
+      group: Group B  # 分组
+      description: 第2级：常规检测、选择性/级联报告药物  # 说明
+      drugs:  # 药物列表
+      - 阿莫西林-克拉维酸
+      - 氨苄西林-舒巴坦
+      - 哌拉西林-他唑巴坦
+      - 庆大霉素
+      - 妥布霉素
+      - 阿米卡星
+      - 普拉佐米星
+      - 环丙沙星
+      - 左氧氟沙星
+      - 甲氧苄啶-磺胺甲噁唑
+      - 头孢替坦
+      - 头孢西丁
+      - 四环素
+      - 氨曲南
+      - 头孢他啶
+      - 头孢罗膦
+    tier3_group_C:
+      label: 第3级 — MDR高危机构补充报告  # 标签
+      group: Group C  # 分组
+      description: 第3级：补充/MDR或高危机构级联报告药物  # 说明
+      drugs:  # 药物列表
+      - 头孢地尔
+      - 亚胺培南
+      - 头孢他啶-阿维巴坦
+      - 美罗培南
+      - 亚胺培南-瑞来巴坦
+      - 美罗培南-韦博巴坦
+    tier4_group_D:
+      label: 第4级 — 临床医师申请检测  # 标签
+      group: Group D  # 分组
+      description: 第4级：补充报告——当其他级别药物均不适合时，由临床医师申请检测  # 说明
+      drugs:  # 药物列表
+      - 头孢洛扎-他唑巴坦
+    urinary_only:
+      label: 泌尿道专用  # 标签
+      group: Group U  # 分组
+      description: 仅泌尿道分离株检测和报告  # 说明
+      drugs:  # 药物列表
+      - 头孢唑林(泌尿道折点)
+      - 呋喃妥因
+      - 磷霉素(仅大肠埃希菌)
+mic_breakpoints:  # MIC折点表
+  source: CLSI M100 第33版 表2A  # 数据来源
+  unit: μg/mL  # 单位
+  sdd_explanation:  # SDD(剂量依赖性敏感)说明
+    term: SDD (Susceptible-Dose Dependent)  # 术语
+    meaning: 剂量依赖性敏感 — 使用更高剂量或延长输注方案时可达到临床疗效  # 含义
+    affected_drugs:  # 涉及药物
+    - 哌拉西林-他唑巴坦
+    - 头孢吡肟
+    - 美罗培南-韦博巴坦
+  breakpoints_by_class:  # 按药物类别分组的折点
+    青霉素类:
+    - drug: 氨苄西林
+      english: Ampicillin  # 英文名
+      S: ≤8  # 敏感
+      I: '16'  # 中介
+      R: ≥32  # 耐药
+      tier: 1  # 报告层级
+      note: 适用于大肠埃希菌、奇异变形杆菌、沙门菌属；肺炎克雷伯菌/产酸克雷伯菌天然耐药  # 备注
+    - drug: 美西林
+      english: Mecillinam  # 英文名
+      S: ≤8  # 敏感
+      I: '-'  # 中介
+      R: ≥16  # 耐药
+      tier: urinary_only  # 报告层级
+      note: 仅泌尿道口服制剂  # 备注
+    β-内酰胺酶抑制剂复方:
+    - drug: 阿莫西林-克拉维酸
+      english: Amoxicillin-Clavulanic acid  # 英文名
+      S: ≤8/4  # 敏感
+      I: 16/8  # 中介
+      R: ≥32/16  # 耐药
+      tier: 2  # 报告层级
+    - drug: 氨苄西林-舒巴坦
+      english: Ampicillin-Sulbactam  # 英文名
+      S: ≤8/4  # 敏感
+      I: 16/8  # 中介
+      R: ≥32/16  # 耐药
+      tier: 2  # 报告层级
+    - drug: 哌拉西林-他唑巴坦
+      english: Piperacillin-Tazobactam  # 英文名
+      S: ≤8/4  # 敏感
+      SDD: 16/4  # 剂量依赖性敏感
+      R: ≥32/4  # 耐药
+      tier: 2  # 报告层级
+      note: SDD需延长输注(4.5g q6h, 3-4小时输注)  # 备注
+    - drug: 亚胺培南-瑞来巴坦
+      english: Imipenem-Relebactam  # 英文名
+      S: ≤1/4  # 敏感
+      I: 2/4  # 中介
+      R: ≥4/4  # 耐药
+      tier: 3  # 报告层级
+    - drug: 美罗培南-韦博巴坦
+      english: Meropenem-Vaborbactam  # 英文名
+      S: ≤4/8  # 敏感
+      SDD: 8/8  # 剂量依赖性敏感
+      R: ≥16/8  # 耐药
+      tier: 3  # 报告层级
+      note: 折点基于4g q8h给药方案（输注时长超过3小时）  # 备注
+    头孢菌素类（注射）:
+    - drug: 头孢唑林
+      english: Cefazolin  # 英文名
+      systemic:  # 系统感染折点
+        S: ≤2  # 敏感
+        I: '4'  # 中介
+        R: ≥8  # 耐药
+      urinary:  # 泌尿道折点
+        S: ≤16  # 敏感
+        R: ≥32  # 耐药
+      tier: 1  # 报告层级
+      note: 系统感染与泌尿道使用不同折点；可作为口服头孢菌素替代试验  # 备注
+    - drug: 头孢噻肟
+      english: Cefotaxime  # 英文名
+      S: ≤1  # 敏感
+      I: '2'  # 中介
+      R: ≥4  # 耐药
+      tier: 1  # 报告层级
+      note: 可替代头孢曲松作为三代头孢代表  # 备注
+    - drug: 头孢曲松
+      english: Ceftriaxone  # 英文名
+      S: ≤1  # 敏感
+      I: '2'  # 中介
+      R: ≥4  # 耐药
+      tier: 1  # 报告层级
+    - drug: 头孢他啶
+      english: Ceftazidime  # 英文名
+      S: ≤4  # 敏感
+      I: '8'  # 中介
+      R: ≥16  # 耐药
+      tier: 2  # 报告层级
+    - drug: 头孢他啶-阿维巴坦
+      english: Ceftazidime-Avibactam  # 英文名
+      S: ≤8/4  # 敏感
+      I: '-'  # 中介
+      R: ≥16/4  # 耐药
+      tier: 3  # 报告层级
+    - drug: 头孢吡肟
+      english: Cefepime  # 英文名
+      S: ≤2  # 敏感
+      SDD: 4-8  # 剂量依赖性敏感
+      R: ≥16  # 耐药
+      tier: 1  # 报告层级
+      note: SDD需高剂量方案(2g q8h, 延长输注)；应作为AmpC高风险菌种的优选检测/报告药物  # 备注
+    - drug: 头孢地尔
+      english: Cefiderocol  # 英文名
+      S: ≤4  # 敏感
+      I: '8'  # 中介
+      R: ≥16  # 耐药
+      tier: 3  # 报告层级
+      note: 铁载体头孢菌素；需铁耗竭阳离子调节MH肉汤测定MIC  # 备注
+    - drug: 头孢洛扎-他唑巴坦
+      english: Ceftolozane-Tazobactam  # 英文名
+      S: ≤2/4  # 敏感
+      I: 4/4  # 中介
+      R: ≥8/4  # 耐药
+      tier: 4  # 报告层级
+    - drug: 头孢西丁
+      english: Cefoxitin  # 英文名
+      S: ≤8  # 敏感
+      I: '16'  # 中介
+      R: ≥32  # 耐药
+      tier: 2  # 报告层级
+      note: 头霉素类；头孢西丁耐药可作为AmpC产酶筛查指标  # 备注
+    - drug: 头孢替坦
+      english: Cefotetan  # 英文名
+      S: ≤16  # 敏感
+      I: '32'  # 中介
+      R: ≥64  # 耐药
+      tier: 2  # 报告层级
+    - drug: 头孢呋辛
+      english: Cefuroxime  # 英文名
+      S: ≤8  # 敏感
+      I: '16'  # 中介
+      R: ≥32  # 耐药
+      tier: 1  # 报告层级
+      note: 注射剂折点  # 备注
+    单环β-内酰胺类:
+    - drug: 氨曲南
+      english: Aztreonam  # 英文名
+      S: ≤4  # 敏感
+      I: '8'  # 中介
+      R: ≥16  # 耐药
+      tier: 2  # 报告层级
+      note: 单环β-内酰胺类；β-内酰胺过敏患者可选；对金属β-内酰胺酶(NDM)稳定  # 备注
+    碳青霉烯类:
+    - drug: 厄他培南
+      english: Ertapenem  # 英文名
+      S: ≤0.5  # 敏感
+      I: '1'  # 中介
+      R: ≥2  # 耐药
+      tier: 1  # 报告层级
+      note: 筛查碳青霉烯耐药的敏感指标；不适用于铜绿假单胞菌和不动杆菌  # 备注
+    - drug: 亚胺培南
+      english: Imipenem  # 英文名
+      S: ≤1  # 敏感
+      I: '2'  # 中介
+      R: ≥4  # 耐药
+      tier: 3  # 报告层级
+    - drug: 美罗培南
+      english: Meropenem  # 英文名
+      S: ≤1  # 敏感
+      I: '2'  # 中介
+      R: ≥4  # 耐药
+      tier: 3  # 报告层级
+    氨基糖苷类:
+    - drug: 庆大霉素
+      english: Gentamicin  # 英文名
+      S: ≤4  # 敏感
+      I: '8'  # 中介
+      R: ≥16  # 耐药
+      tier: 2  # 报告层级
+    - drug: 妥布霉素
+      english: Tobramycin  # 英文名
+      S: ≤4  # 敏感
+      I: '8'  # 中介
+      R: ≥16  # 耐药
+      tier: 2  # 报告层级
+    - drug: 阿米卡星
+      english: Amikacin  # 英文名
+      S: ≤16  # 敏感
+      I: '32'  # 中介
+      R: ≥64  # 耐药
+      tier: 2  # 报告层级
+    - drug: 普拉佐米星
+      english: Plazomicin  # 英文名
+      S: ≤2  # 敏感
+      I: '4'  # 中介
+      R: ≥8  # 耐药
+      tier: 2  # 报告层级
+      note: 新一代氨基糖苷；可抵抗多数氨基糖苷修饰酶  # 备注
+    四环素类:
+    - drug: 四环素
+      english: Tetracycline  # 英文名
+      S: ≤4  # 敏感
+      I: '8'  # 中介
+      R: ≥16  # 耐药
+      tier: 2  # 报告层级
+      note: '注释63: 对四环素敏感的菌株也被认为对多西环素和米诺环素敏感'  # 备注
+    - drug: 多西环素
+      english: Doxycycline  # 英文名
+      S: ≤4  # 敏感
+      I: '8'  # 中介
+      R: ≥16  # 耐药
+      note: 非标准分级药物(*)；四环素中介或耐药菌株可能对多西环素或米诺环素敏感  # 备注
+    - drug: 米诺环素
+      english: Minocycline  # 英文名
+      S: ≤4  # 敏感
+      I: '8'  # 中介
+      R: ≥16  # 耐药
+      note: 非标准分级药物(*)  # 备注
+    喹诺酮/氟喹诺酮类:
+      drugs:  # 药物列表
+      - drug: 环丙沙星
+        english: Ciprofloxacin  # 英文名
+        S: ≤0.25  # 敏感
+        I: '0.5'  # 中介
+        R: ≥1  # 耐药
+        tier: 2  # 报告层级
+        note: '注释64: 折点基于IV 400mg q12h或口服500mg q12h'  # 备注
+      - drug: 左氧氟沙星
+        english: Levofloxacin  # 英文名
+        S: ≤0.5  # 敏感
+        I: '1'  # 中介
+        R: ≥2  # 耐药
+        tier: 2  # 报告层级
+        note: '注释65: 折点基于750mg qd'  # 备注
+      - drug: 西诺沙星
+        english: Cinoxacin  # 英文名
+        S: ≤16  # 敏感
+        I: '32'  # 中介
+        R: ≥64  # 耐药
+        note: 仅泌尿道(U)^b  # 备注
+      - drug: 依诺沙星
+        english: Enoxacin  # 英文名
+        S: ≤2  # 敏感
+        I: '4'  # 中介
+        R: ≥8  # 耐药
+        note: 仅泌尿道(U)^b  # 备注
+      - drug: 加替沙星
+        english: Gatifloxacin  # 英文名
+        S: ≤2  # 敏感
+        I: '4'  # 中介
+        R: ≥8  # 耐药
+        note: 非标准分级药物(*)  # 备注
+      - drug: 吉米沙星
+        english: Gemifloxacin  # 英文名
+        S: ≤0.25  # 敏感
+        I: '0.5'  # 中介
+        R: ≥1  # 耐药
+        note: '注释66: 仅用于肺炎克雷伯菌报告'  # 备注
+      - drug: 格雷沙星
+        english: Grepafloxacin  # 英文名
+        S: ≤1  # 敏感
+        I: '2'  # 中介
+        R: ≥4  # 耐药
+        note: 非标准分级药物(*)  # 备注
+      - drug: 洛美沙星
+        english: Lomefloxacin  # 英文名
+        S: ≤2  # 敏感
+        I: '4'  # 中介
+        R: ≥8  # 耐药
+        note: 非标准分级药物(*)  # 备注
+      - drug: 萘啶酸
+        english: Nalidixic acid  # 英文名
+        S: ≤16  # 敏感
+        I: '-'  # 中介
+        R: ≥32  # 耐药
+        note: 仅泌尿道(U)^b  # 备注
+      - drug: 诺氟沙星
+        english: Norfloxacin  # 英文名
+        S: ≤4  # 敏感
+        I: '8'  # 中介
+        R: ≥16  # 耐药
+        note: 仅泌尿道(U)^b  # 备注
+      - drug: 氧氟沙星
+        english: Ofloxacin  # 英文名
+        S: ≤2  # 敏感
+        I: '4'  # 中介
+        R: ≥8  # 耐药
+        note: 非标准分级药物(*)  # 备注
+      - drug: 氟罗沙星
+        english: Fleroxacin  # 英文名
+        S: ≤2  # 敏感
+        I: '4'  # 中介
+        R: ≥8  # 耐药
+        note: 研究型(Inv.)  # 备注
+      salmonella_breakpoints:  # 沙门菌专用折点
+        note: 沙门菌/志贺菌属使用更严格的喹诺酮折点（注释67-71）  # 备注
+        ciprofloxacin:
+          S: ≤0.06  # 敏感
+          I: '-'  # 中介
+          R: ≥1  # 耐药
+        levofloxacin:
+          S: ≤0.12  # 敏感
+          I: '-'  # 中介
+          R: ≥2  # 耐药
+        ofloxacin:
+          S: ≤0.12  # 敏感
+          I: '-'  # 中介
+          R: ≥2  # 耐药
+        pefloxacin_surrogate: 培氟沙星纸片(5μg)可作为沙门菌环丙沙星敏感性替代判定指标（注释71）
+    叶酸途径抑制剂:
+    - drug: 甲氧苄啶-磺胺甲噁唑
+      english: Trimethoprim-Sulfamethoxazole  # 英文名
+      S: ≤2/38  # 敏感
+      I: '-'  # 中介
+      R: ≥4/76  # 耐药
+      tier: 2  # 报告层级
+    - drug: 磺胺类
+      english: Sulfonamides  # 英文名
+      S: ≤256  # 敏感
+      I: '-'  # 中介
+      R: ≥512  # 耐药
+      note: '注释72: 代表任一磺胺药物；仅泌尿道(U)^b，非标准分级药物(*)'  # 备注
+    - drug: 甲氧苄啶
+      english: Trimethoprim  # 英文名
+      S: ≤8  # 敏感
+      I: '-'  # 中介
+      R: ≥16  # 耐药
+      note: 单药；仅泌尿道(U)^b，非标准分级药物(*)  # 备注
+    酰胺醇类:
+    - drug: 氯霉素
+      english: Chloramphenicol  # 英文名
+      S: ≤8  # 敏感
+      I: '16'  # 中介
+      R: ≥32  # 耐药
+      note: '注释73: 非标准分级药物(*)；不常规报告泌尿道分离株'  # 备注
+    多黏菌素类:
+    - drug: 黏菌素
+      english: Colistin (Polymyxin E)  # 英文名
+      S: ≤2  # 敏感
+      I: '-'  # 中介
+      R: ≥4  # 耐药
+      note: 仅限肉汤微量稀释法(BMD)测定；不可使用纸片扩散法或Etest  # 备注
+    磷霉素类:
+    - drug: 磷霉素
+      english: Fosfomycin  # 英文名
+      S: ≤64  # 敏感
+      I: '128'  # 中介
+      R: ≥256  # 耐药
+      tier: urinary_only  # 报告层级
+      notes:  # 备注
+      - '注释74: 折点仅用于泌尿道分离的大肠埃希菌，不用于其他肠杆菌目'
+      - '注释75: 200μg磷霉素纸片含50μg葡萄糖-6-磷酸'
+      - '注释76: 唯一认可MIC法为琼脂稀释法(添加25μg/mL葡萄糖-6-磷酸)，不采用肉汤稀释法'
+    呋喃类:
+    - drug: 呋喃妥因
+      english: Nitrofurantoin  # 英文名
+      S: ≤32  # 敏感
+      I: '64'  # 中介
+      R: ≥128  # 耐药
+      tier: urinary_only  # 报告层级
+      note: 仅泌尿道；变形杆菌属/摩根菌属/普罗威登菌属天然耐药  # 备注
+dosing_linked_breakpoints:  # 剂量关联折点
+  description: 关键药物的剂量关联折点说明  # 说明
+  entries:  # 条目列表
+  - drug: 环丙沙星
+    dosing: IV 400mg q12h 或口服500mg q12h  # 剂量方案
+    source: 注释64  # 数据来源
+  - drug: 左氧氟沙星
+    dosing: 750mg qd  # 剂量方案
+    source: 注释65  # 数据来源
+  - drug: 吉米沙星
+    dosing: 仅用于肺炎克雷伯菌报告  # 剂量方案
+    source: 注释66  # 数据来源
+  - drug: 头孢吡肟(SDD)
+    dosing: 2g q8h 延长输注(3-4小时)  # 剂量方案
+    note: SDD范围(MIC 4-8)需高剂量方案  # 备注
+  - drug: 哌拉西林-他唑巴坦(SDD)
+    dosing: 4.5g q6h 延长输注(3-4小时)  # 剂量方案
+    note: SDD范围(MIC 16/4)需高剂量方案  # 备注
+  - drug: 美罗培南
+    dosing: 标准1g q8h; 高剂量2g q8h延长输注  # 剂量方案
+    note: MIC接近折点时考虑延长输注  # 备注
+  - drug: 美罗培南-韦博巴坦(SDD)
+    dosing: 4g q8h 延长输注(超过3小时)  # 剂量方案
+    source: PDF第7页  # 数据来源
+urinary_specific:  # 泌尿道专用
+  description: 泌尿道专用折点和药物  # 说明
+  dual_breakpoint_drugs:  # 双折点药物
+  - drug: 头孢唑林
+    systemic:  # 系统感染折点
+      S: ≤2  # 敏感
+      I: '4'  # 中介
+      R: ≥8  # 耐药
+    urinary:  # 泌尿道折点
+      S: ≤16  # 敏感
+      R: ≥32  # 耐药
+    note: 泌尿道折点更宽松因药物在尿液中浓缩  # 备注
+  urinary_only_drugs:  # 仅泌尿道药物
+  - drug: 磷霉素
+    S: ≤64  # 敏感
+    I: '128'  # 中介
+    R: ≥256  # 耐药
+    restriction: 仅大肠埃希菌  # 限制条件
+  - drug: 呋喃妥因
+    S: ≤32  # 敏感
+    I: '64'  # 中介
+    R: ≥128  # 耐药
+    restriction: 变形杆菌/摩根菌/普罗威登菌天然耐药  # 限制条件
+  - drug: 美西林
+    S: ≤8  # 敏感
+    R: ≥16  # 耐药
+    restriction: 口服制剂  # 限制条件
+  - drug: 磺胺类
+    S: ≤256  # 敏感
+    R: ≥512  # 耐药
+    restriction: 代表任一磺胺  # 限制条件
+  - drug: 甲氧苄啶(单药)
+    S: ≤8  # 敏感
+    R: ≥16  # 耐药
+  - drug: 西诺沙星
+    S: ≤16  # 敏感
+    R: ≥64  # 耐药
+  - drug: 依诺沙星
+    S: ≤2  # 敏感
+    R: ≥8  # 耐药
+  - drug: 萘啶酸
+    S: ≤16  # 敏感
+    R: ≥32  # 耐药
+  - drug: 诺氟沙星
+    S: ≤4  # 敏感
+    R: ≥16  # 耐药
+  symbol_note: ^符号指示有可能在尿液中浓集的药物  # 符号说明

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微生物报告智能解读系统</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="marked.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- 顶部标题栏 -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+                <h1>微生物报告智能解读</h1>
+            </div>
+            <div class="header-right">
+                <button class="header-btn" id="history-btn" onclick="toggleHistory()" title="历史会话">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                </button>
+                <button class="header-btn" id="export-btn" onclick="exportReport()" title="导出报告" style="display:none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                </button>
+                <button class="header-btn" id="view-file-btn" onclick="viewOriginalFile()" title="查看原始报告" style="display:none;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                </button>
+                <button class="header-btn" onclick="window.open('/graph','_blank')" title="知识图谱">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <circle cx="19" cy="5" r="2"/>
+                        <circle cx="5" cy="5" r="2"/>
+                        <line x1="14.1" y1="9.9" x2="17.5" y2="6.5"/>
+                        <line x1="9.9" y1="9.9" x2="6.5" y2="6.5"/>
+                    </svg>
+                </button>
+                <label class="upload-btn" for="file-upload">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    上传报告
+                </label>
+                <input type="file" id="file-upload" accept=".pdf,.jpg,.jpeg,.png,.bmp" hidden>
+            </div>
+        </header>
+
+        <!-- 主体区域 -->
+        <div class="main-content">
+            <!-- 左侧历史面板 -->
+            <div class="history-panel" id="history-panel">
+                <div class="history-header">
+                    <h3>历史会话</h3>
+                    <button class="close-panel-sm" onclick="toggleHistory()">×</button>
+                </div>
+                <div class="history-list" id="history-list">
+                    <div class="history-placeholder">暂无历史记录</div>
+                </div>
+            </div>
+
+            <!-- 中间对话区域 -->
+            <div class="chat-panel">
+                <div class="chat-messages" id="chat-messages">
+                    <!-- 欢迎消息 -->
+                    <div class="message assistant">
+                        <div class="message-avatar">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <div class="message-content">
+                            <p>您好! 我是微生物报告智能解读助手。</p>
+                            <p>请先<strong>上传 PDF 或图片格式的微生物检验报告</strong>, 我将为您进行专业解读, 包括:</p>
+                            <ul>
+                                <li>细菌鉴定与临床意义分析</li>
+                                <li>药敏结果解读与耐药机制判断</li>
+                                <li>基于 CLSI 指南的用药推荐</li>
+                                <li>知识图谱循证查询（可展开查看详情）</li>
+                            </ul>
+                            <p>您也可以直接向我提问微生物学相关问题。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 输入区域 -->
+                <div class="chat-input-area">
+                    <div class="input-wrapper">
+                        <textarea
+                            id="user-input"
+                            placeholder="输入消息... (Enter发送, Shift+Enter换行)"
+                            rows="1"
+                        ></textarea>
+                        <button class="send-btn" id="send-btn" onclick="sendMessage()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"/>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引用tooltip -->
+    <div class="cite-tooltip" id="cite-tooltip" style="display:none;"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

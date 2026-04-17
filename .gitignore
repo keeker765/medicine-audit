@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# KuzuDB database (regenerated from YAML)
+kuzu_data/
+kuzu_data.imported
+
+# User data
+sessions/
+uploads/
+
+# Environment
+.env
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Claude Code
+.claude/
+
+# Archives
+*.zip
+
+# OS
+Thumbs.db
+.DS_Store
